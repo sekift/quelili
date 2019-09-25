@@ -1,0 +1,81 @@
+#开发环境配置
+spring:
+  application:
+    name: quelili-back
+  servlet:
+   multipart:
+     max-file-size: 100MB
+     max-request-size: 1024MB
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/quelili
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+      # 使用druid数据源
+      #type: com.alibaba.druid.pool.DruidDataSource
+
+  #redis配置
+  redis:
+  #  数据库索引
+      database: 0
+  #    服务器地址
+      host: 127.0.0.1
+    #    服务器连接端口
+      port: 6379
+    #    链接密码
+      password: 123456
+      jedis:
+  #    链接池
+        pool:
+  #    最大连接数（负值表示没有限制）
+          max-active: 8
+  #      最大阻塞等待时间（负值表示没有限制）
+          max-wait: -1
+  #      最大空闲链接
+          max-idle: 8
+  #      最小空闲链接
+          min-idle: 0
+  #    链接超时时间（毫秒）
+      timeout: 5000
+mybatis:
+  typeAliasesPackage: com.quelili.back.model
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    call-setters-on-nulls: true
+    #输出sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#唯一编号生成器
+snowflakeIdWorker:
+  workerId: 0
+  datacenterId: 1
+pagehelper:
+    helperDialect: mysql
+    reasonable: false
+    supportMethodsArguments: true
+    params: count=countSql
+
+server:
+  port: 18083
+  servlet:
+    context-path: /back-api
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:18080/quelili-cloud/eureka/
+    registry-fetch-interval-seconds: 5 #拉取服务注册信息时间间隔,默认为30秒
+  instance:
+    lease-renewal-interval-in-seconds: 5  #心跳时间,默认为30秒
+    lease-expiration-duration-in-seconds: 10 #若eureka server在这时间内没收到心跳则移除该instance,默认为90秒
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+swagger:
+  enabled: true
+
+visiticonurl: /Volumes/data3/vrapp_deploy/img
+imgurl: /Volumes/data3/vrapp_deploy/img
+
+htmlsaveurl: /Volumes/data3/vrapp_deploy/static
+htmlcallurl: https://www.quelili.com/socApp/
+htmlzipcallurl: /Volumes/data3/vrapp_deploy/static

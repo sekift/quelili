@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar" />
+    <context id="SqlTables" targetRuntime="MyBatis3">
+
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /><!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/quelili"
+                        userId="root" password="123456" />
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成实体类地址 vo/entity-->
+        <javaModelGenerator targetPackage="com.quelili.back.model"
+                            targetProject="src/main/java" >
+            <property name="enableSubPackages" value="false"/>
+            <!--设置父类 <property name="rootClass" value="cc.dd.entity.baseEntity"/> -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成xml文件 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources" >
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.cc.dd.user.model， true:com.cc.dd.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <javaClientGenerator targetPackage="com.quelili.back.dao"
+                             targetProject="src/main/java" type="XMLMAPPER" >
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要生成的表名 -->
+        <!-- 歌手信息 -->
+        <!-- <table tableName="que_singer_info"
+               domainObjectName="QueSingerInfo" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true"></table> -->
+
+        <!-- 用户信息 -->
+        <table tableName="sys_user"
+               domainObjectName="SysUser" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true"></table>
+    </context>
+</generatorConfiguration>
