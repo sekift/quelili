@@ -21,6 +21,29 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <docker.image.prefix>quelili</docker.image.prefix>
+        <mybatis.starter.version>1.3.2</mybatis.starter.version>
+        <mybatis.starter.test.version>1.3.2</mybatis.starter.test.version>
+        <pagehelper.starter.version>1.2.3</pagehelper.starter.version>
+        <druid.starter.version>1.1.10</druid.starter.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
+        <jedis.version>2.9.0</jedis.version>
+        <mysql.connector.version>5.1.45</mysql.connector.version>
+        <jackson.core.version>1.6.4</jackson.core.version>
+        <jackson.mapper.version>1.6.4</jackson.mapper.version>
+        <fastjson.version>1.2.58</fastjson.version>
+        <lombok.version>1.16.20</lombok.version>
+        <zxing.version>3.3.3</zxing.version>
+        <easypoi.base.version>2.1.3</easypoi.base.version>
+        <beanutils.version>1.8.3</beanutils.version>
+        <collections.version>3.2.1</collections.version>
+        <htmlunit.version>2.27</htmlunit.version>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.ui.version>2.9.2</swagger.ui.version>
+        <guava.version>28.0-jre</guava.version>
+        <jdom.version>2.0.2</jdom.version>
+        <maven.war.plugin.version>2.6</maven.war.plugin.version>
+        <mybatis.generator.plugin.version>1.3.2</mybatis.generator.plugin.version>
+        <docker.plugin.version>1.0.0</docker.plugin.version>
     </properties>
 
     <dependencies>
@@ -46,19 +69,19 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.2</version>
+            <version>${mybatis.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
-            <version>1.3.2</version>
+            <version>${mybatis.starter.test.version}</version>
             <scope>test</scope>
         </dependency>
         <!--pagehelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.3</version>
+            <version>${pagehelper.starter.version}</version>
         </dependency>
         <!-- 加载jdbc连接数据库 -->
         <dependency>
@@ -68,20 +91,20 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
+            <version>${druid.starter.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+        <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator 图片压缩-->
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
-            <version>0.4.8</version>
+            <version>${thumbnailator.version}</version>
         </dependency>
 
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
+            <version>${jedis.version}</version>
         </dependency>
 
         <!-- 加载sqlserver驱动 -->
@@ -100,40 +123,34 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>${mysql.connector.version}</version>
             <scope>runtime</scope>
-        </dependency>
-        <!-- druid连接池-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.9</version>
         </dependency>
 
         <!-- JSON工具类 -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
-            <version>1.6.4</version>
+            <version>${jackson.core.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.6.4</version>
+            <version>${jackson.mapper.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.14</version>
+            <version>${fastjson.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -141,64 +158,57 @@
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.3.3</version>
+            <version>${zxing.version}</version>
         </dependency>
 
         <!-- EasyPoi Excel和 Word简易工具类 -->
         <dependency>
             <groupId>org.jeecg</groupId>
             <artifactId>easypoi-base</artifactId>
-            <version>2.1.3</version>
+            <version>${easypoi.base.version}</version>
         </dependency>
 
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
+            <version>${beanutils.version}</version>
         </dependency>
 
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
+            <version>${collections.version}</version>
         </dependency>
 
         <!--html需要jar-->
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>
-            <version>2.27</version>
-        </dependency>
-
-        <!--图片压缩-->
-        <dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-            <version>0.4.8</version>
+            <version>${htmlunit.version}</version>
         </dependency>
 
         <!-- 加载swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.ui.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>28.0-jre</version>
+            <version>${guava.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jdom/jdom -->
         <dependency>
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
-            <version>2.0.2</version>
+            <version>${jdom.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -222,7 +232,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven.war.plugin.version}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -237,7 +247,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
+                <version>${mybatis.generator.plugin.version}</version>
                 <configuration>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
@@ -247,7 +257,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>${docker.plugin.version}</version>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
