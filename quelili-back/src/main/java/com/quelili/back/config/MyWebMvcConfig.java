@@ -4,6 +4,8 @@ package com.quelili.back.config;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -15,19 +17,33 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Date;
+import java.util.TimeZone;
 
+/**
+ * @author sekift
+ * @date 2018-09-01 11:11:22
+ * 拦截器，extends WebMvcConfigurationSupport或implements WebMvcConfigurer，但有些小不同
+ */
 @Configuration
 public class MyWebMvcConfig extends WebMvcConfigurationSupport {
 
-    //全局范围内，将Long序列化为String
     //具体说明：https://blog.csdn.net/weixin_37162010/article/details/81484230
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleModule simpleModule = new SimpleModule();
+        // 日期类型的转换 https://juejin.im/post/5be976ff51882516b9377915
+        //objectMapper.enable(SerializationFeature.WRITE_NULL_MAP_VALUES);
+        objectMapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        objectMapper.setDateFormat(format);
+
         //指定Long序列化为String
         simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
         //指定long序列化为String
@@ -47,7 +63,7 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
     //重新映射swagger-ui.html，否则swagger无法访问
     //具体说明：https://blog.csdn.net/xtj332/article/details/80595768
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
@@ -84,7 +100,7 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/sysemployee/**", corsConfig());
+        source.registerCorsConfiguration("/api/user/**", corsConfig());
         return new CorsFilter(source);
     }
 

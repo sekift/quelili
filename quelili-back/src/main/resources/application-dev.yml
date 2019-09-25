@@ -13,6 +13,12 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       # 使用druid数据源
       #type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    serialization:
+      indent-output: true
+    default-property-inclusion: non-null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
   #redis配置
   redis:
@@ -37,6 +43,7 @@ spring:
           min-idle: 0
   #    链接超时时间（毫秒）
       timeout: 5000
+
 mybatis:
   typeAliasesPackage: com.quelili.back.model
   mapperLocations: classpath:mapper/*.xml

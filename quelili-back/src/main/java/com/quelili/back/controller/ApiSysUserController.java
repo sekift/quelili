@@ -44,11 +44,11 @@ public class ApiSysUserController {
     }
 
     /**
-     * 按组织查询用户
+     * 按条件查询用户
      */
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    @ApiOperation(value="按组织查询用户", notes="用户操作" ,httpMethod="POST")
+    @ApiOperation(value="按条件查询用户", notes="用户操作" ,httpMethod="POST")
     public JsonRslt search(@RequestBody SysUserVO sysUserVO, @RequestHeader("token") String token) {
         SessionInfo sessionInfo=tokenCache.getSessionInfo(token);
         return sysUserService.search(sysUserVO,sessionInfo);

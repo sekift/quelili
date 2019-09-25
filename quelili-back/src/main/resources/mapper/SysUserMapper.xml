@@ -342,6 +342,9 @@
     <include refid="Base_Column_List"/>
     FROM sys_user
     <where>
+      <if test="userid!=null">
+        AND userid = #{userid,jdbcType=BIGINT}
+      </if>
     <if test="username!=null and username!=''">
       AND username like '%${username}%'
     </if>
