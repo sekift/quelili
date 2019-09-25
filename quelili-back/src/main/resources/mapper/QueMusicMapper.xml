@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quelili.back.dao.QueMusicMapper" >
+  <resultMap id="BaseResultMap" type="com.quelili.back.model.QueMusic" >
+    <id column="musicId" property="musicid" jdbcType="INTEGER" />
+    <result column="musicRid" property="musicrid" jdbcType="VARCHAR" />
+    <result column="musicName" property="musicname" jdbcType="VARCHAR" />
+    <result column="albumId" property="albumid" jdbcType="INTEGER" />
+    <result column="albumName" property="albumname" jdbcType="VARCHAR" />
+    <result column="artistId" property="artistid" jdbcType="INTEGER" />
+    <result column="artistName" property="artistname" jdbcType="VARCHAR" />
+    <result column="hasMv" property="hasmv" jdbcType="TINYINT" />
+    <result column="isStar" property="isstar" jdbcType="TINYINT" />
+    <result column="isListenFee" property="islistenfee" jdbcType="TINYINT" />
+    <result column="online" property="online" jdbcType="TINYINT" />
+    <result column="pay" property="pay" jdbcType="INTEGER" />
+    <result column="nationId" property="nationid" jdbcType="VARCHAR" />
+    <result column="track" property="track" jdbcType="INTEGER" />
+    <result column="albumPic" property="albumpic" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="pic120" property="pic120" jdbcType="VARCHAR" />
+    <result column="hasLossless" property="haslossless" jdbcType="TINYINT" />
+    <result column="songTimeMinutes" property="songtimeminutes" jdbcType="VARCHAR" />
+    <result column="releaseDate" property="releasedate" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="curUrl" property="cururl" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    musicId, musicRid, musicName, albumId, albumName, artistId, artistName, hasMv, isStar, 
+    isListenFee, online, pay, nationId, track, albumPic, pic, pic120, hasLossless, songTimeMinutes, 
+    releaseDate, duration, curUrl, createTime, updateTime, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.quelili.back.model.QueMusicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from que_music
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from que_music
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from que_music
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.quelili.back.model.QueMusicExample" >
+    delete from que_music
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.quelili.back.model.QueMusic" >
+    insert into que_music (musicId, musicRid, musicName, 
+      albumId, albumName, artistId, 
+      artistName, hasMv, isStar, 
+      isListenFee, online, pay, 
+      nationId, track, albumPic, 
+      pic, pic120, hasLossless, 
+      songTimeMinutes, releaseDate, duration, 
+      curUrl, createTime, updateTime, 
+      remark)
+    values (#{musicid,jdbcType=INTEGER}, #{musicrid,jdbcType=VARCHAR}, #{musicname,jdbcType=VARCHAR}, 
+      #{albumid,jdbcType=INTEGER}, #{albumname,jdbcType=VARCHAR}, #{artistid,jdbcType=INTEGER}, 
+      #{artistname,jdbcType=VARCHAR}, #{hasmv,jdbcType=TINYINT}, #{isstar,jdbcType=TINYINT}, 
+      #{islistenfee,jdbcType=TINYINT}, #{online,jdbcType=TINYINT}, #{pay,jdbcType=INTEGER}, 
+      #{nationid,jdbcType=VARCHAR}, #{track,jdbcType=INTEGER}, #{albumpic,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{pic120,jdbcType=VARCHAR}, #{haslossless,jdbcType=TINYINT}, 
+      #{songtimeminutes,jdbcType=VARCHAR}, #{releasedate,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, 
+      #{cururl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quelili.back.model.QueMusic" >
+    insert into que_music
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="musicid != null" >
+        musicId,
+      </if>
+      <if test="musicrid != null" >
+        musicRid,
+      </if>
+      <if test="musicname != null" >
+        musicName,
+      </if>
+      <if test="albumid != null" >
+        albumId,
+      </if>
+      <if test="albumname != null" >
+        albumName,
+      </if>
+      <if test="artistid != null" >
+        artistId,
+      </if>
+      <if test="artistname != null" >
+        artistName,
+      </if>
+      <if test="hasmv != null" >
+        hasMv,
+      </if>
+      <if test="isstar != null" >
+        isStar,
+      </if>
+      <if test="islistenfee != null" >
+        isListenFee,
+      </if>
+      <if test="online != null" >
+        online,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="nationid != null" >
+        nationId,
+      </if>
+      <if test="track != null" >
+        track,
+      </if>
+      <if test="albumpic != null" >
+        albumPic,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="pic120 != null" >
+        pic120,
+      </if>
+      <if test="haslossless != null" >
+        hasLossless,
+      </if>
+      <if test="songtimeminutes != null" >
+        songTimeMinutes,
+      </if>
+      <if test="releasedate != null" >
+        releaseDate,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="cururl != null" >
+        curUrl,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="musicid != null" >
+        #{musicid,jdbcType=INTEGER},
+      </if>
+      <if test="musicrid != null" >
+        #{musicrid,jdbcType=VARCHAR},
+      </if>
+      <if test="musicname != null" >
+        #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null" >
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null" >
+        #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="hasmv != null" >
+        #{hasmv,jdbcType=TINYINT},
+      </if>
+      <if test="isstar != null" >
+        #{isstar,jdbcType=TINYINT},
+      </if>
+      <if test="islistenfee != null" >
+        #{islistenfee,jdbcType=TINYINT},
+      </if>
+      <if test="online != null" >
+        #{online,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=INTEGER},
+      </if>
+      <if test="nationid != null" >
+        #{nationid,jdbcType=VARCHAR},
+      </if>
+      <if test="track != null" >
+        #{track,jdbcType=INTEGER},
+      </if>
+      <if test="albumpic != null" >
+        #{albumpic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic120 != null" >
+        #{pic120,jdbcType=VARCHAR},
+      </if>
+      <if test="haslossless != null" >
+        #{haslossless,jdbcType=TINYINT},
+      </if>
+      <if test="songtimeminutes != null" >
+        #{songtimeminutes,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null" >
+        #{releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="cururl != null" >
+        #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.quelili.back.model.QueMusicExample" resultType="java.lang.Integer" >
+    select count(*) from que_music
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update que_music
+    <set >
+      <if test="record.musicid != null" >
+        musicId = #{record.musicid,jdbcType=INTEGER},
+      </if>
+      <if test="record.musicrid != null" >
+        musicRid = #{record.musicrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.musicname != null" >
+        musicName = #{record.musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albumid != null" >
+        albumId = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumname != null" >
+        albumName = #{record.albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artistid != null" >
+        artistId = #{record.artistid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artistname != null" >
+        artistName = #{record.artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasmv != null" >
+        hasMv = #{record.hasmv,jdbcType=TINYINT},
+      </if>
+      <if test="record.isstar != null" >
+        isStar = #{record.isstar,jdbcType=TINYINT},
+      </if>
+      <if test="record.islistenfee != null" >
+        isListenFee = #{record.islistenfee,jdbcType=TINYINT},
+      </if>
+      <if test="record.online != null" >
+        online = #{record.online,jdbcType=TINYINT},
+      </if>
+      <if test="record.pay != null" >
+        pay = #{record.pay,jdbcType=INTEGER},
+      </if>
+      <if test="record.nationid != null" >
+        nationId = #{record.nationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.track != null" >
+        track = #{record.track,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumpic != null" >
+        albumPic = #{record.albumpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic120 != null" >
+        pic120 = #{record.pic120,jdbcType=VARCHAR},
+      </if>
+      <if test="record.haslossless != null" >
+        hasLossless = #{record.haslossless,jdbcType=TINYINT},
+      </if>
+      <if test="record.songtimeminutes != null" >
+        songTimeMinutes = #{record.songtimeminutes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.releasedate != null" >
+        releaseDate = #{record.releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=INTEGER},
+      </if>
+      <if test="record.cururl != null" >
+        curUrl = #{record.cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update que_music
+    set musicId = #{record.musicid,jdbcType=INTEGER},
+      musicRid = #{record.musicrid,jdbcType=VARCHAR},
+      musicName = #{record.musicname,jdbcType=VARCHAR},
+      albumId = #{record.albumid,jdbcType=INTEGER},
+      albumName = #{record.albumname,jdbcType=VARCHAR},
+      artistId = #{record.artistid,jdbcType=INTEGER},
+      artistName = #{record.artistname,jdbcType=VARCHAR},
+      hasMv = #{record.hasmv,jdbcType=TINYINT},
+      isStar = #{record.isstar,jdbcType=TINYINT},
+      isListenFee = #{record.islistenfee,jdbcType=TINYINT},
+      online = #{record.online,jdbcType=TINYINT},
+      pay = #{record.pay,jdbcType=INTEGER},
+      nationId = #{record.nationid,jdbcType=VARCHAR},
+      track = #{record.track,jdbcType=INTEGER},
+      albumPic = #{record.albumpic,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      pic120 = #{record.pic120,jdbcType=VARCHAR},
+      hasLossless = #{record.haslossless,jdbcType=TINYINT},
+      songTimeMinutes = #{record.songtimeminutes,jdbcType=VARCHAR},
+      releaseDate = #{record.releasedate,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=INTEGER},
+      curUrl = #{record.cururl,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quelili.back.model.QueMusic" >
+    update que_music
+    <set >
+      <if test="musicrid != null" >
+        musicRid = #{musicrid,jdbcType=VARCHAR},
+      </if>
+      <if test="musicname != null" >
+        musicName = #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null" >
+        albumId = #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null" >
+        albumName = #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        artistId = #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        artistName = #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="hasmv != null" >
+        hasMv = #{hasmv,jdbcType=TINYINT},
+      </if>
+      <if test="isstar != null" >
+        isStar = #{isstar,jdbcType=TINYINT},
+      </if>
+      <if test="islistenfee != null" >
+        isListenFee = #{islistenfee,jdbcType=TINYINT},
+      </if>
+      <if test="online != null" >
+        online = #{online,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=INTEGER},
+      </if>
+      <if test="nationid != null" >
+        nationId = #{nationid,jdbcType=VARCHAR},
+      </if>
+      <if test="track != null" >
+        track = #{track,jdbcType=INTEGER},
+      </if>
+      <if test="albumpic != null" >
+        albumPic = #{albumpic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic120 != null" >
+        pic120 = #{pic120,jdbcType=VARCHAR},
+      </if>
+      <if test="haslossless != null" >
+        hasLossless = #{haslossless,jdbcType=TINYINT},
+      </if>
+      <if test="songtimeminutes != null" >
+        songTimeMinutes = #{songtimeminutes,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null" >
+        releaseDate = #{releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="cururl != null" >
+        curUrl = #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quelili.back.model.QueMusic" >
+    update que_music
+    set musicRid = #{musicrid,jdbcType=VARCHAR},
+      musicName = #{musicname,jdbcType=VARCHAR},
+      albumId = #{albumid,jdbcType=INTEGER},
+      albumName = #{albumname,jdbcType=VARCHAR},
+      artistId = #{artistid,jdbcType=INTEGER},
+      artistName = #{artistname,jdbcType=VARCHAR},
+      hasMv = #{hasmv,jdbcType=TINYINT},
+      isStar = #{isstar,jdbcType=TINYINT},
+      isListenFee = #{islistenfee,jdbcType=TINYINT},
+      online = #{online,jdbcType=TINYINT},
+      pay = #{pay,jdbcType=INTEGER},
+      nationId = #{nationid,jdbcType=VARCHAR},
+      track = #{track,jdbcType=INTEGER},
+      albumPic = #{albumpic,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      pic120 = #{pic120,jdbcType=VARCHAR},
+      hasLossless = #{haslossless,jdbcType=TINYINT},
+      songTimeMinutes = #{songtimeminutes,jdbcType=VARCHAR},
+      releaseDate = #{releasedate,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=INTEGER},
+      curUrl = #{cururl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </update>
+</mapper>

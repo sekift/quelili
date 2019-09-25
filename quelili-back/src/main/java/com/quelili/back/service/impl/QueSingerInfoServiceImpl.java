@@ -94,7 +94,7 @@ public class QueSingerInfoServiceImpl implements QueSingerInfoService {
 
     @Override
     public JsonRslt searchAllList() {
-        List<Map> rstList=queSingerInfoMapper.searchAllList();
+        List<QueSingerInfo> rstList = queSingerInfoMapper.searchAllList();
         return JsonRslt.putSuccess(rstList);
     }
 }

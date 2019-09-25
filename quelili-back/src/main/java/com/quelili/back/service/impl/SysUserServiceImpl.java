@@ -8,6 +8,7 @@ import com.quelili.back.cache.ITokenCache;
 import com.quelili.back.cache.IUserCache;
 import com.quelili.back.common.CacheConsts;
 import com.quelili.back.common.Consts;
+import com.quelili.back.common.LocaleMessage;
 import com.quelili.back.dao.SysUserMapper;
 import com.quelili.back.model.SysUser;
 import com.quelili.back.model.SysUserExample;
@@ -22,12 +23,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
+
+    @Resource
+    private LocaleMessage localeMessage;
 
     @Autowired
     private SysUserMapper sysUserMapper;
@@ -138,7 +143,7 @@ public class SysUserServiceImpl implements SysUserService {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             LogUtils.logError(CommUtils.getException(e));
         }
-        return JsonRslt.putError("新增失败");
+        return JsonRslt.putError(localeMessage.getMessage("ADD_FAIL", 0)/*"新增失败"*/);
     }
 
 
@@ -172,7 +177,7 @@ public class SysUserServiceImpl implements SysUserService {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             LogUtils.logError(CommUtils.getException(e));
         }
-        return JsonRslt.putError("修改失败");
+        return JsonRslt.putError(localeMessage.getMessage("EDT_FAIL", sessionInfo.getLangid())/*"修改失败"*/);
     }
 
 
@@ -190,7 +195,7 @@ public class SysUserServiceImpl implements SysUserService {
         }catch (Exception e){
             LogUtils.logError(CommUtils.getException(e));
         }
-        return JsonRslt.putError("删除失败");
+        return JsonRslt.putError(localeMessage.getMessage("DEL_FAIL", sessionInfo.getLangid())/*"删除失败"*/);
     }
 
     @Override

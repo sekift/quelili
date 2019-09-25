@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quelili.back.dao.QueAlbumMapper" >
+  <resultMap id="BaseResultMap" type="com.quelili.back.model.QueAlbum" >
+    <id column="albumId" property="albumid" jdbcType="INTEGER" />
+    <result column="albumName" property="albumname" jdbcType="VARCHAR" />
+    <result column="artistId" property="artistid" jdbcType="INTEGER" />
+    <result column="artistName" property="artistname" jdbcType="VARCHAR" />
+    <result column="isStar" property="isstar" jdbcType="TINYINT" />
+    <result column="pay" property="pay" jdbcType="INTEGER" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="releaseDate" property="releasedate" jdbcType="VARCHAR" />
+    <result column="albumInfo" property="albuminfo" jdbcType="VARCHAR" />
+    <result column="curUrl" property="cururl" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    albumId, albumName, artistId, artistName, isStar, pay, pic, language, releaseDate, 
+    albumInfo, curUrl, createTime, updateTime, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.quelili.back.model.QueAlbumExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from que_album
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from que_album
+    where albumId = #{albumid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from que_album
+    where albumId = #{albumid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.quelili.back.model.QueAlbumExample" >
+    delete from que_album
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.quelili.back.model.QueAlbum" >
+    insert into que_album (albumId, albumName, artistId, 
+      artistName, isStar, pay, 
+      pic, language, releaseDate, 
+      albumInfo, curUrl, createTime, 
+      updateTime, remark)
+    values (#{albumid,jdbcType=INTEGER}, #{albumname,jdbcType=VARCHAR}, #{artistid,jdbcType=INTEGER}, 
+      #{artistname,jdbcType=VARCHAR}, #{isstar,jdbcType=TINYINT}, #{pay,jdbcType=INTEGER}, 
+      #{pic,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, #{releasedate,jdbcType=VARCHAR}, 
+      #{albuminfo,jdbcType=VARCHAR}, #{cururl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quelili.back.model.QueAlbum" >
+    insert into que_album
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="albumid != null" >
+        albumId,
+      </if>
+      <if test="albumname != null" >
+        albumName,
+      </if>
+      <if test="artistid != null" >
+        artistId,
+      </if>
+      <if test="artistname != null" >
+        artistName,
+      </if>
+      <if test="isstar != null" >
+        isStar,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="releasedate != null" >
+        releaseDate,
+      </if>
+      <if test="albuminfo != null" >
+        albumInfo,
+      </if>
+      <if test="cururl != null" >
+        curUrl,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="albumid != null" >
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null" >
+        #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="isstar != null" >
+        #{isstar,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null" >
+        #{releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="albuminfo != null" >
+        #{albuminfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cururl != null" >
+        #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.quelili.back.model.QueAlbumExample" resultType="java.lang.Integer" >
+    select count(*) from que_album
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update que_album
+    <set >
+      <if test="record.albumid != null" >
+        albumId = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumname != null" >
+        albumName = #{record.albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artistid != null" >
+        artistId = #{record.artistid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artistname != null" >
+        artistName = #{record.artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isstar != null" >
+        isStar = #{record.isstar,jdbcType=TINYINT},
+      </if>
+      <if test="record.pay != null" >
+        pay = #{record.pay,jdbcType=INTEGER},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null" >
+        language = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.releasedate != null" >
+        releaseDate = #{record.releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albuminfo != null" >
+        albumInfo = #{record.albuminfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cururl != null" >
+        curUrl = #{record.cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update que_album
+    set albumId = #{record.albumid,jdbcType=INTEGER},
+      albumName = #{record.albumname,jdbcType=VARCHAR},
+      artistId = #{record.artistid,jdbcType=INTEGER},
+      artistName = #{record.artistname,jdbcType=VARCHAR},
+      isStar = #{record.isstar,jdbcType=TINYINT},
+      pay = #{record.pay,jdbcType=INTEGER},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      language = #{record.language,jdbcType=VARCHAR},
+      releaseDate = #{record.releasedate,jdbcType=VARCHAR},
+      albumInfo = #{record.albuminfo,jdbcType=VARCHAR},
+      curUrl = #{record.cururl,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quelili.back.model.QueAlbum" >
+    update que_album
+    <set >
+      <if test="albumname != null" >
+        albumName = #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        artistId = #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        artistName = #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="isstar != null" >
+        isStar = #{isstar,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null" >
+        releaseDate = #{releasedate,jdbcType=VARCHAR},
+      </if>
+      <if test="albuminfo != null" >
+        albumInfo = #{albuminfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cururl != null" >
+        curUrl = #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where albumId = #{albumid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quelili.back.model.QueAlbum" >
+    update que_album
+    set albumName = #{albumname,jdbcType=VARCHAR},
+      artistId = #{artistid,jdbcType=INTEGER},
+      artistName = #{artistname,jdbcType=VARCHAR},
+      isStar = #{isstar,jdbcType=TINYINT},
+      pay = #{pay,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
+      releaseDate = #{releasedate,jdbcType=VARCHAR},
+      albumInfo = #{albuminfo,jdbcType=VARCHAR},
+      curUrl = #{cururl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where albumId = #{albumid,jdbcType=INTEGER}
+  </update>
+</mapper>

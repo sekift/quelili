@@ -93,7 +93,7 @@ public class ApiQueSingerInfoController {
      */
     @ResponseBody
     @RequestMapping(value = "/searchAllList", method = RequestMethod.POST)
-    @ApiOperation(value="查询所有歌手信息", notes="货架接口" ,httpMethod="POST")
+    @ApiOperation(value="查询所有歌手信息", notes="歌手信息接口" ,httpMethod="POST")
     public JsonRslt searchAllList(@RequestHeader("token") String token) {
         SessionInfo sessionInfo = tokenCache.getSessionInfo(token);
         return queSingerInfoService.searchAllList();

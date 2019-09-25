@@ -41,5 +41,5 @@ public interface QueSingerInfoMapper {
      * 查询所有
      * @return
      */
-    List<Map> searchAllList();
+    List<QueSingerInfo> searchAllList();
 }

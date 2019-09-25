@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quelili.back.dao.QueLyricMapper" >
+  <resultMap id="BaseResultMap" type="com.quelili.back.model.QueLyric" >
+    <id column="musicId" property="musicid" jdbcType="INTEGER" />
+    <result column="musicName" property="musicname" jdbcType="VARCHAR" />
+    <result column="albumId" property="albumid" jdbcType="INTEGER" />
+    <result column="albumName" property="albumname" jdbcType="VARCHAR" />
+    <result column="artistId" property="artistid" jdbcType="INTEGER" />
+    <result column="artistName" property="artistname" jdbcType="VARCHAR" />
+    <result column="lrcList" property="lrclist" jdbcType="VARCHAR" />
+    <result column="nsig1" property="nsig1" jdbcType="VARCHAR" />
+    <result column="nsig2" property="nsig2" jdbcType="VARCHAR" />
+    <result column="score100" property="score100" jdbcType="INTEGER" />
+    <result column="playCnt" property="playcnt" jdbcType="INTEGER" />
+    <result column="curUrl" property="cururl" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    musicId, musicName, albumId, albumName, artistId, artistName, lrcList, nsig1, nsig2, 
+    score100, playCnt, curUrl, createTime, updateTime, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.quelili.back.model.QueLyricExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from que_lyric
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from que_lyric
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from que_lyric
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.quelili.back.model.QueLyricExample" >
+    delete from que_lyric
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.quelili.back.model.QueLyric" >
+    insert into que_lyric (musicId, musicName, albumId, 
+      albumName, artistId, artistName, 
+      lrcList, nsig1, nsig2, 
+      score100, playCnt, curUrl, 
+      createTime, updateTime, remark
+      )
+    values (#{musicid,jdbcType=INTEGER}, #{musicname,jdbcType=VARCHAR}, #{albumid,jdbcType=INTEGER}, 
+      #{albumname,jdbcType=VARCHAR}, #{artistid,jdbcType=INTEGER}, #{artistname,jdbcType=VARCHAR}, 
+      #{lrclist,jdbcType=VARCHAR}, #{nsig1,jdbcType=VARCHAR}, #{nsig2,jdbcType=VARCHAR}, 
+      #{score100,jdbcType=INTEGER}, #{playcnt,jdbcType=INTEGER}, #{cururl,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.quelili.back.model.QueLyric" >
+    insert into que_lyric
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="musicid != null" >
+        musicId,
+      </if>
+      <if test="musicname != null" >
+        musicName,
+      </if>
+      <if test="albumid != null" >
+        albumId,
+      </if>
+      <if test="albumname != null" >
+        albumName,
+      </if>
+      <if test="artistid != null" >
+        artistId,
+      </if>
+      <if test="artistname != null" >
+        artistName,
+      </if>
+      <if test="lrclist != null" >
+        lrcList,
+      </if>
+      <if test="nsig1 != null" >
+        nsig1,
+      </if>
+      <if test="nsig2 != null" >
+        nsig2,
+      </if>
+      <if test="score100 != null" >
+        score100,
+      </if>
+      <if test="playcnt != null" >
+        playCnt,
+      </if>
+      <if test="cururl != null" >
+        curUrl,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="musicid != null" >
+        #{musicid,jdbcType=INTEGER},
+      </if>
+      <if test="musicname != null" >
+        #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null" >
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null" >
+        #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="lrclist != null" >
+        #{lrclist,jdbcType=VARCHAR},
+      </if>
+      <if test="nsig1 != null" >
+        #{nsig1,jdbcType=VARCHAR},
+      </if>
+      <if test="nsig2 != null" >
+        #{nsig2,jdbcType=VARCHAR},
+      </if>
+      <if test="score100 != null" >
+        #{score100,jdbcType=INTEGER},
+      </if>
+      <if test="playcnt != null" >
+        #{playcnt,jdbcType=INTEGER},
+      </if>
+      <if test="cururl != null" >
+        #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.quelili.back.model.QueLyricExample" resultType="java.lang.Integer" >
+    select count(*) from que_lyric
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update que_lyric
+    <set >
+      <if test="record.musicid != null" >
+        musicId = #{record.musicid,jdbcType=INTEGER},
+      </if>
+      <if test="record.musicname != null" >
+        musicName = #{record.musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albumid != null" >
+        albumId = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumname != null" >
+        albumName = #{record.albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artistid != null" >
+        artistId = #{record.artistid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artistname != null" >
+        artistName = #{record.artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lrclist != null" >
+        lrcList = #{record.lrclist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nsig1 != null" >
+        nsig1 = #{record.nsig1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nsig2 != null" >
+        nsig2 = #{record.nsig2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score100 != null" >
+        score100 = #{record.score100,jdbcType=INTEGER},
+      </if>
+      <if test="record.playcnt != null" >
+        playCnt = #{record.playcnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.cururl != null" >
+        curUrl = #{record.cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update que_lyric
+    set musicId = #{record.musicid,jdbcType=INTEGER},
+      musicName = #{record.musicname,jdbcType=VARCHAR},
+      albumId = #{record.albumid,jdbcType=INTEGER},
+      albumName = #{record.albumname,jdbcType=VARCHAR},
+      artistId = #{record.artistid,jdbcType=INTEGER},
+      artistName = #{record.artistname,jdbcType=VARCHAR},
+      lrcList = #{record.lrclist,jdbcType=VARCHAR},
+      nsig1 = #{record.nsig1,jdbcType=VARCHAR},
+      nsig2 = #{record.nsig2,jdbcType=VARCHAR},
+      score100 = #{record.score100,jdbcType=INTEGER},
+      playCnt = #{record.playcnt,jdbcType=INTEGER},
+      curUrl = #{record.cururl,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quelili.back.model.QueLyric" >
+    update que_lyric
+    <set >
+      <if test="musicname != null" >
+        musicName = #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null" >
+        albumId = #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null" >
+        albumName = #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="artistid != null" >
+        artistId = #{artistid,jdbcType=INTEGER},
+      </if>
+      <if test="artistname != null" >
+        artistName = #{artistname,jdbcType=VARCHAR},
+      </if>
+      <if test="lrclist != null" >
+        lrcList = #{lrclist,jdbcType=VARCHAR},
+      </if>
+      <if test="nsig1 != null" >
+        nsig1 = #{nsig1,jdbcType=VARCHAR},
+      </if>
+      <if test="nsig2 != null" >
+        nsig2 = #{nsig2,jdbcType=VARCHAR},
+      </if>
+      <if test="score100 != null" >
+        score100 = #{score100,jdbcType=INTEGER},
+      </if>
+      <if test="playcnt != null" >
+        playCnt = #{playcnt,jdbcType=INTEGER},
+      </if>
+      <if test="cururl != null" >
+        curUrl = #{cururl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quelili.back.model.QueLyric" >
+    update que_lyric
+    set musicName = #{musicname,jdbcType=VARCHAR},
+      albumId = #{albumid,jdbcType=INTEGER},
+      albumName = #{albumname,jdbcType=VARCHAR},
+      artistId = #{artistid,jdbcType=INTEGER},
+      artistName = #{artistname,jdbcType=VARCHAR},
+      lrcList = #{lrclist,jdbcType=VARCHAR},
+      nsig1 = #{nsig1,jdbcType=VARCHAR},
+      nsig2 = #{nsig2,jdbcType=VARCHAR},
+      score100 = #{score100,jdbcType=INTEGER},
+      playCnt = #{playcnt,jdbcType=INTEGER},
+      curUrl = #{cururl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where musicId = #{musicid,jdbcType=INTEGER}
+  </update>
+</mapper>
