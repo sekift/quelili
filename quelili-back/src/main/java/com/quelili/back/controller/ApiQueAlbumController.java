@@ -8,10 +8,9 @@ import com.quelili.back.vo.SessionInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/album")
 @Api(tags="专辑信息API")
 public class ApiQueAlbumController {
@@ -27,7 +26,6 @@ public class ApiQueAlbumController {
      * @param queAlbumVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ApiOperation(value="查询条件专辑信息", notes="专辑信息接口，支持albumid、albumname、artistid或artistname" ,httpMethod="POST")
     public JsonRslt search(@RequestBody QueAlbumVO queAlbumVO, @RequestHeader("token") String token) {
@@ -40,7 +38,6 @@ public class ApiQueAlbumController {
      * @param queAlbumVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/select", method = RequestMethod.POST)
     @ApiOperation(value="查询单条专辑信息", notes="专辑信息接口，只传albumid即可" ,httpMethod="POST")
     public JsonRslt select(@RequestBody QueAlbumVO queAlbumVO, @RequestHeader("token") String token) {
@@ -66,7 +63,6 @@ public class ApiQueAlbumController {
      * @param queAlbumVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ApiOperation(value="专辑信息修改", notes="专辑信息接口，除了后台生成和readonly之外有什么传什么" ,httpMethod="POST")
     public JsonRslt edit(@RequestBody QueAlbumVO queAlbumVO, @RequestHeader("token") String token) {
@@ -79,7 +75,6 @@ public class ApiQueAlbumController {
      * @param queAlbumVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ApiOperation(value="专辑信息删除", notes="专辑信息接口，只传albumid即可" ,httpMethod="POST")
     public JsonRslt del(@RequestBody QueAlbumVO queAlbumVO, @RequestHeader("token") String token) {

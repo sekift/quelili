@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/singerinfo")
 @Api(tags="歌手信息API")
 public class ApiQueSingerInfoController {
@@ -27,7 +27,6 @@ public class ApiQueSingerInfoController {
      * @param queSingerInfoVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ApiOperation(value="查询条件歌手信息", notes="歌手信息接口，支持artistid、aartist或artistname" ,httpMethod="POST")
     public JsonRslt search(@RequestBody QueSingerInfoVO queSingerInfoVO, @RequestHeader("token") String token) {
@@ -40,7 +39,6 @@ public class ApiQueSingerInfoController {
      * @param queSingerInfoVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/select", method = RequestMethod.POST)
     @ApiOperation(value="查询单条歌手信息", notes="歌手信息接口，只传artistid即可" ,httpMethod="POST")
     public JsonRslt select(@RequestBody QueSingerInfoVO queSingerInfoVO, @RequestHeader("token") String token) {
@@ -53,7 +51,6 @@ public class ApiQueSingerInfoController {
      * @param queSingerInfoVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ApiOperation(value="歌手信息插入", notes="歌手信息接口，除了后台生成和readonly之外有什么传什么" ,httpMethod="POST")
     public JsonRslt insert(@RequestBody QueSingerInfoVO queSingerInfoVO, @RequestHeader("token") String token) {
@@ -66,7 +63,6 @@ public class ApiQueSingerInfoController {
      * @param queSingerInfoVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ApiOperation(value="歌手信息修改", notes="歌手信息接口，除了后台生成和readonly之外有什么传什么" ,httpMethod="POST")
     public JsonRslt edit(@RequestBody QueSingerInfoVO queSingerInfoVO, @RequestHeader("token") String token) {
@@ -79,7 +75,6 @@ public class ApiQueSingerInfoController {
      * @param queSingerInfoVO
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ApiOperation(value="歌手信息删除", notes="歌手信息接口，只传artistid即可" ,httpMethod="POST")
     public JsonRslt del(@RequestBody QueSingerInfoVO queSingerInfoVO, @RequestHeader("token") String token) {
@@ -91,7 +86,6 @@ public class ApiQueSingerInfoController {
      * 查询所有歌手信息
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/searchAllList", method = RequestMethod.POST)
     @ApiOperation(value="查询所有歌手信息", notes="歌手信息接口" ,httpMethod="POST")
     public JsonRslt searchAllList(@RequestHeader("token") String token) {

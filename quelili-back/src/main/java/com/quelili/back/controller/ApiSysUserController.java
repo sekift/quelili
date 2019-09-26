@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/user")
 @Api(tags="用户信息API")
 public class ApiSysUserController {
@@ -30,7 +30,6 @@ public class ApiSysUserController {
      * @param langid
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiOperation(value="用户登录", notes="用户操作" ,httpMethod="POST")
     public JsonRslt login(@RequestBody SysUserVO sysUserVO, @RequestParam(name = "langid", defaultValue = "0", required = false) Integer langid) {
@@ -46,7 +45,6 @@ public class ApiSysUserController {
     /**
      * 按条件查询用户
      */
-    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ApiOperation(value="按条件查询用户", notes="用户操作" ,httpMethod="POST")
     public JsonRslt search(@RequestBody SysUserVO sysUserVO, @RequestHeader("token") String token) {
@@ -58,7 +56,6 @@ public class ApiSysUserController {
     /**
      * 插入用户数据
      */
-    @ResponseBody
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ApiOperation(value="插入用户数据", notes="用户操作" ,httpMethod="POST")
     public JsonRslt insert(@RequestBody SysUserVO sysUserVO) {
@@ -68,8 +65,8 @@ public class ApiSysUserController {
     /**
      * 单条记录查询
      */
-    @ResponseBody
     @RequestMapping(value = "/select", method = RequestMethod.POST)
+    @ApiOperation(value="查询单条用户数据", notes="用户操作，只传userid即可" ,httpMethod="POST")
     public JsonRslt select(@RequestBody SysUserVO sysUserVO,@RequestHeader("token") String token) {
         SessionInfo sessionInfo=tokenCache.getSessionInfo(token);
         return sysUserService.select(sysUserVO.getUserid(), sessionInfo);
@@ -78,7 +75,6 @@ public class ApiSysUserController {
     /**
      * 修改
      */
-    @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ApiOperation(value="修改用户数据", notes="用户操作" ,httpMethod="POST")
     public JsonRslt edit(@RequestBody SysUserVO sysUserVO, @RequestHeader("token") String token) {
@@ -89,7 +85,6 @@ public class ApiSysUserController {
     /**
      * 删除
      */
-    @ResponseBody
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ApiOperation(value="删除用户数据", notes="用户操作" ,httpMethod="POST")
     public JsonRslt del(@RequestBody SysUserVO sysUserVO, @RequestHeader("token") String token) {
@@ -101,7 +96,6 @@ public class ApiSysUserController {
     /**
      * 用户启用禁用
      */
-    @ResponseBody
     @RequestMapping(value = "/unbl", method = RequestMethod.POST)
     @ApiOperation(value="用户启用禁用", notes="用户操作" ,httpMethod="POST")
     public JsonRslt unbl(@RequestBody SysUserVO sysUserVO) {
@@ -111,7 +105,6 @@ public class ApiSysUserController {
     /**
      * 修改密码
      */
-    @ResponseBody
     @RequestMapping(value = "/editPass", method = RequestMethod.POST)
     @ApiOperation(value="修改密码", notes="用户操作" ,httpMethod="POST")
     public JsonRslt editPass(@RequestBody SysUserVO sysUserVO, @RequestHeader("token") String token) {

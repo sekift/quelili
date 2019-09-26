@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@ApiModel(description="歌词信息")
+@ApiModel(description="歌词信息（无）")
 public class QueLyricNoneVO extends BaseEntity {
     private Integer musicid;
 
