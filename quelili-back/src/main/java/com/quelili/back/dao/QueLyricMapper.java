@@ -1,5 +1,6 @@
 package com.quelili.back.dao;
 
+import com.quelili.back.model.QueAlbum;
 import com.quelili.back.model.QueLyric;
 import com.quelili.back.model.QueLyricExample;
 import java.util.List;
@@ -27,4 +28,11 @@ public interface QueLyricMapper {
     int updateByPrimaryKeySelective(QueLyric record);
 
     int updateByPrimaryKey(QueLyric record);
+
+    /**
+     * 条件查询
+     * @param record
+     * @return
+     */
+    List<QueLyric> search(QueLyric record);
 }

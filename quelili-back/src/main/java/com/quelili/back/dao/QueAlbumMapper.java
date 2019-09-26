@@ -3,6 +3,8 @@ package com.quelili.back.dao;
 import com.quelili.back.model.QueAlbum;
 import com.quelili.back.model.QueAlbumExample;
 import java.util.List;
+
+import com.quelili.back.model.QueSingerInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface QueAlbumMapper {
@@ -27,4 +29,11 @@ public interface QueAlbumMapper {
     int updateByPrimaryKeySelective(QueAlbum record);
 
     int updateByPrimaryKey(QueAlbum record);
+
+    /**
+     * 条件查询
+     * @param record
+     * @return
+     */
+    List<QueAlbum> search(QueAlbum record);
 }

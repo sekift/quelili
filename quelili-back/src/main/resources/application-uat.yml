@@ -71,7 +71,7 @@ ribbon:
   ConnectTimeout: 5000
 
 swagger:
-  enabled: true
+  enabled: false
 
 visiticonurl: /Volumes/data3/vrapp_deploy/img
 imgurl: /Volumes/data3/vrapp_deploy/img

@@ -1,5 +1,6 @@
 package com.quelili.back.dao;
 
+import com.quelili.back.model.QueLyricNone;
 import com.quelili.back.model.QueMusic;
 import com.quelili.back.model.QueMusicExample;
 import java.util.List;
@@ -27,4 +28,11 @@ public interface QueMusicMapper {
     int updateByPrimaryKeySelective(QueMusic record);
 
     int updateByPrimaryKey(QueMusic record);
+
+    /**
+     * 条件查询
+     * @param record
+     * @return
+     */
+    List<QueMusic> search(QueMusic record);
 }

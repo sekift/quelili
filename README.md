@@ -19,7 +19,7 @@ JDK：1.8.0_121<br/>
 在线接口文档：Swagger 2.9.2<br/>
 
 # 项目配置
-更新配置请看/doc/quelili配置文档.doc，sql数据表信息请看back.sql。
+项目配置请看/doc/quelili配置文档.doc，sql数据表信息请看back.sql。
 
 # 功能更新
 2019/09/24 更新 <br />

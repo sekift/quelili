@@ -368,4 +368,35 @@
       remark = #{remark,jdbcType=VARCHAR}
     where musicId = #{musicid,jdbcType=INTEGER}
   </update>
+
+  <select id="search" parameterType="com.quelili.back.model.QueLyric" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    que_lyric
+    <where>
+      <if test="musicid!=null">
+        AND musicid = #{musicid,jdbcType=INTEGER}
+      </if>
+      <if test="musicname!=null and musicname!=''">
+        AND musicname LIKE '%${musicname}%'
+      </if>
+      <if test="albumid!=null">
+        AND albumid = #{albumid,jdbcType=INTEGER}
+      </if>
+      <if test="albumname!=null and albumname!=''">
+        AND albumname LIKE '%${albumname}%'
+      </if>
+      <if test="artistid!=null">
+        AND artistid = #{artistid,jdbcType=INTEGER}
+      </if>
+      <if test="artistname!=null and artistname!=''">
+        AND artistname LIKE '%${artistname}%'
+      </if>
+      <if test="lrclist!=null and lrclist!=''">
+        AND lrclist LIKE '%${lrclist}%'
+      </if>
+    </where>
+    ORDER BY createtime DESC
+  </select>
 </mapper>

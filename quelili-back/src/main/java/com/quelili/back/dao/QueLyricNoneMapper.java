@@ -1,5 +1,6 @@
 package com.quelili.back.dao;
 
+import com.quelili.back.model.QueLyric;
 import com.quelili.back.model.QueLyricNone;
 import com.quelili.back.model.QueLyricNoneExample;
 import java.util.List;
@@ -27,4 +28,11 @@ public interface QueLyricNoneMapper {
     int updateByPrimaryKeySelective(QueLyricNone record);
 
     int updateByPrimaryKey(QueLyricNone record);
+
+    /**
+     * 条件查询
+     * @param record
+     * @return
+     */
+    List<QueLyricNone> search(QueLyricNone record);
 }

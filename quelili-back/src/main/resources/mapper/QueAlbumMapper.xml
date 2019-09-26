@@ -351,4 +351,26 @@
       remark = #{remark,jdbcType=VARCHAR}
     where albumId = #{albumid,jdbcType=INTEGER}
   </update>
+
+  <select id="search" parameterType="com.quelili.back.model.QueAlbum" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    que_album
+    <where>
+      <if test="albumid!=null">
+        AND albumid = #{albumid,jdbcType=INTEGER}
+      </if>
+      <if test="albumname!=null and albumname!=''">
+        AND albumname LIKE '%${albumname}%'
+      </if>
+      <if test="artistid!=null">
+        AND artistid = #{artistid,jdbcType=INTEGER}
+      </if>
+      <if test="artistname!=null and artistname!=''">
+        AND artistname LIKE '%${artistname}%'
+      </if>
+    </where>
+    ORDER BY createtime DESC
+  </select>
 </mapper>
