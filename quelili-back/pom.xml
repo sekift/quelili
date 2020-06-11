@@ -34,7 +34,7 @@
         <lombok.version>1.16.20</lombok.version>
         <zxing.version>3.3.3</zxing.version>
         <easypoi.base.version>2.1.3</easypoi.base.version>
-        <beanutils.version>1.8.3</beanutils.version>
+        <beanutils.version>1.9.2</beanutils.version>
         <collections.version>3.2.1</collections.version>
         <htmlunit.version>2.27</htmlunit.version>
         <swagger.version>2.9.2</swagger.version>
