@@ -35,7 +35,7 @@
         <zxing.version>3.3.3</zxing.version>
         <easypoi.base.version>2.1.3</easypoi.base.version>
         <beanutils.version>1.8.3</beanutils.version>
-        <collections.version>3.2.1</collections.version>
+        <collections.version>3.2.2</collections.version>
         <htmlunit.version>2.27</htmlunit.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger.ui.version>2.9.2</swagger.ui.version>
