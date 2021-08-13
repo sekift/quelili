@@ -59,13 +59,14 @@ server:
   servlet:
     context-path: /back-api
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:18080/quelili-cloud/eureka/
-    registry-fetch-interval-seconds: 5 #拉取服务注册信息时间间隔,默认为30秒
   instance:
-    lease-renewal-interval-in-seconds: 5  #心跳时间,默认为30秒
-    lease-expiration-duration-in-seconds: 10 #若eureka server在这时间内没收到心跳则移除该instance,默认为90秒
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:18080}/eureka/
 ribbon:
   ReadTimeout: 5000
   ConnectTimeout: 5000

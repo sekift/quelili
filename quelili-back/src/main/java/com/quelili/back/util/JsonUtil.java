@@ -320,6 +320,16 @@ public final class JsonUtil {
 		}
 
 		@Override
+		public void writeRawUTF8String(byte[] bytes, int i, int i1) throws IOException, JsonGenerationException {
+
+		}
+
+		@Override
+		public void writeUTF8String(byte[] bytes, int i, int i1) throws IOException, JsonGenerationException {
+
+		}
+
+		@Override
 		public void writeString(String ps) throws IOException, JsonGenerationException {
 
 			String fn = null;
