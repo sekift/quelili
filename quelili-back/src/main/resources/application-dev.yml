@@ -29,7 +29,7 @@ spring:
     #    服务器连接端口
       port: 6379
     #    链接密码
-      password: 123456
+      password: "123456"
       jedis:
   #    链接池
         pool:

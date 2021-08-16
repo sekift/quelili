@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.quelili.back.dao.QueMusicMapper" >
+<mapper namespace="com.quelili.back.dao.QueMusicMapperSpec" >
   <resultMap id="BaseResultMap" type="com.quelili.back.model.QueMusic" >
     <id column="musicId" property="musicid" jdbcType="INTEGER" />
     <result column="musicRid" property="musicrid" jdbcType="VARCHAR" />
