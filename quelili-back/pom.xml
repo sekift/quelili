@@ -39,7 +39,7 @@
         <collections.version>4.4</collections.version>
         <htmlunit.version>[2.27,)</htmlunit.version>
         <swagger.version>2.9.2</swagger.version>
-        <swagger.ui.version>2.9.2</swagger.ui.version>
+        <swagger.ui.version>2.10.0</swagger.ui.version>
         <guava.version>[28.0-jre,)</guava.version>
         <jdom.version>2.0.6</jdom.version>
         <maven.war.plugin.version>2.6</maven.war.plugin.version>
